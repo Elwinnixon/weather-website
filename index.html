@@ -28,10 +28,18 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Align the input to the left */
+            align-items: flex-start;
         }
 
-        /* Input and Button Styling */
+        /* Transparent Box around Input */
+        .input-box {
+            background-color: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+            border-radius: 8px;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Optional shadow */
+        }
+
         #cityInput {
             background-color: rgba(255, 255, 255, 0.1);
             color: #ffffff;
@@ -41,7 +49,7 @@
             font-size: 1em;
             margin-top: 10px;
             outline: none;
-            width: 100%; /* Make input take full width */
+            width: 100%;
         }
 
         .btn-primary {
@@ -53,14 +61,13 @@
             font-weight: bold;
             border-radius: 5px;
             transition: background-color 0.3s;
-            width: 100%; /* Make button take full width */
+            width: 100%;
         }
 
         .btn-primary:hover {
             background-color: rgba(255, 255, 255, 0.4);
         }
 
-        /* Weather Card Styling */
         .card {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 12px;
@@ -68,13 +75,11 @@
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
             color: #ffffff;
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            display: none; /* Initially hidden */
+            display: none;
             margin-top: 20px;
-            width: 100%; /* Make card take full width */
+            width: 100%;
         }
 
-        /* Text Shadow */
         h1 {
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
             font-weight: 700;
@@ -91,7 +96,6 @@
             font-size: 1.1em;
         }
 
-        /* Google Maps Icon Button */
         .maps-btn {
             background: none;
             border: none;
@@ -113,28 +117,28 @@
 <body>
     <div class="container">
         <h1>Weather Search</h1>
-        <!-- Left-aligned Input and Button -->
-        <div class="input-group">
-            <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-            <input type="text" id="cityInput" class="form-control" placeholder="Enter City Name">
+        <!-- Transparent Box around Input -->
+        <div class="input-box">
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <input type="text" id="cityInput" class="form-control" placeholder="Enter City Name">
+            </div>
+            <button onclick="getWeather()" class="btn btn-primary mt-3"><i class="fas fa-cloud-sun"></i> Get Weather</button>
         </div>
-        <button onclick="getWeather()" class="btn btn-primary mt-3"><i class="fas fa-cloud-sun"></i> Get Weather</button>
 
-        <!-- Right-aligned Weather Result Card -->
+        <!-- Weather Result Card -->
         <div id="weatherResult" class="card">
             <h3 id="cityName"></h3>
             <p id="temperature"></p>
             <p id="weatherDescription"></p>
             <p id="humidity"></p>
             <p id="windSpeed"></p>
-            <!-- Google Maps Button -->
             <button id="mapsLink" class="maps-btn" onclick="openMaps()" style="display: none;">
                 <i class="fas fa-map-marker-alt"></i> View on Google Maps
             </button>
         </div>
     </div>
 
-    <!-- Bootstrap Icons for Map Button -->
     <script src="script.js"></script>
 </body>
 </html>
