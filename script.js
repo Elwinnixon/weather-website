@@ -14,7 +14,12 @@ async function getWeather() {
             document.getElementById("humidity").textContent = `Humidity: ${data.main.humidity}%`;
             document.getElementById("windSpeed").textContent = `Wind Speed: ${data.wind.speed} m/s`;
 
+            // Show the weather result and Google Maps button
             document.getElementById("weatherResult").style.display = "block";
+            document.getElementById("mapsLink").style.display = "inline";
+            
+            // Set data for Google Maps
+            document.getElementById("mapsLink").dataset.city = data.name;
         } else {
             alert("City not found! Please enter a valid city name.");
         }
@@ -22,4 +27,10 @@ async function getWeather() {
         console.error("Error fetching data: ", error);
         alert("Error retrieving data. Please try again later.");
     }
+}
+
+// Open Google Maps with the city name from the dataset
+function openMaps() {
+    const city = document.getElementById("mapsLink").dataset.city;
+    window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(city)}`, '_blank');
 }
