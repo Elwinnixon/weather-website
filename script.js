@@ -14,6 +14,10 @@ async function getWeather() {
             document.getElementById("humidity").textContent = `Humidity: ${data.main.humidity}%`;
             document.getElementById("windSpeed").textContent = `Wind Speed: ${data.wind.speed} m/s`;
 
+            // Weather icon based on conditions
+            const weatherIcon = getWeatherIcon(data.weather[0].main);
+            document.getElementById("weatherDescription").insertAdjacentHTML('beforeend', ` <i class="fas ${weatherIcon}"></i>`);
+
             // Show the weather result and Google Maps button
             document.getElementById("weatherResult").style.display = "block";
             document.getElementById("mapsLink").style.display = "inline";
@@ -33,4 +37,22 @@ async function getWeather() {
 function openMaps() {
     const city = document.getElementById("mapsLink").dataset.city;
     window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(city)}`, '_blank');
+}
+
+// Function to get weather condition icon class
+function getWeatherIcon(weatherCondition) {
+    switch (weatherCondition) {
+        case 'Clear':
+            return 'fa-sun';
+        case 'Clouds':
+            return 'fa-cloud';
+        case 'Rain':
+            return 'fa-cloud-showers-heavy';
+        case 'Snow':
+            return 'fa-snowflake';
+        case 'Thunderstorm':
+            return 'fa-bolt';
+        default:
+            return 'fa-smog';
+    }
 }
